@@ -19,4 +19,8 @@ class interfaceController extends Controller {
     function Items(){
         $this->view->showItemsByFolder();
     }
+
+    function editItem(){
+        $this->view->showItemEdit();
+    }
 }

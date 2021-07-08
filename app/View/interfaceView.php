@@ -19,4 +19,8 @@ class interfaceView extends View{
     function showItemsByFolder(){
         $this->smarty->display('../templates/itemsByFolder.tpl');
     }
+
+    function showItemEdit(){
+        $this->smarty->display('../templates/editItem.tpl');
+    }
 }

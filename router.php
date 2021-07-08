@@ -13,6 +13,9 @@
     //LOS ITEMS DE UNA CARPETA
     $r->addRoute("folder/:ID", "GET", "interfaceController", "Items");
 
+    //EDITAR UN ITEM
+    $r->addRoute("editItem/:ID", "GET", "interfaceController", "editItem");
+
    //Ruta por defecto.
     $r->setDefaultRoute("interfaceController", "Folders");
 

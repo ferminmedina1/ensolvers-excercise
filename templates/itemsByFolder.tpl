@@ -39,9 +39,5 @@
         <div>
     </article>
 
- <!-- FOOTER 
-
-    {include file="footer.tpl"}-->
-
 </body>
 </html>

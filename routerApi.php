@@ -28,6 +28,10 @@ $r->addRoute("items/folder/:ID", "GET", "apiItemsController", "getItemsByFolder"
 $r->addRoute("addItem", "POST", "apiItemsController", "addItem");
 
 //EDITAR ITEM
-$r->addRoute("items/:ID", "PUT", "apiItemsController", "editItemCheck");
+$r->addRoute("items/check/:ID", "PUT", "apiItemsController", "editItemCheck");
+
+//EDITAR ITEM
+$r->addRoute("items/:ID", "PUT", "apiItemsController", "editItem");
+
 
 $r->route($_GET['resource'], $_SERVER['REQUEST_METHOD']); 

@@ -25,7 +25,7 @@ function loadPage () {
 
         lista.innerHTML = ""            //SE VACIA EL DIV
         folders.forEach(folders => {
-             lista.innerHTML += "<li class='folder'>" + folders.name  + "<a href=folder/"+ folders.id+">View items</a><i class='botonBorrar fa fa-trash' id='"+ folders.id+"'style='font-size:36px'></i></li>"
+             lista.innerHTML += "<li class='folder'><p class='text'>" + folders.name  + "</p><a href=folder/"+ folders.id+">View items</a><i class='botonBorrar fa fa-trash' id='"+ folders.id+"'style='font-size:36px'></i></li>"
              boton_borrar_fila(); //se le da funcionalidad
             });
     }

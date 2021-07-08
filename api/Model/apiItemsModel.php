@@ -19,9 +19,14 @@ class apiItemsModel extends Model{
         return $query->execute([$info,$id_folder]);
     }
 
-    function updateItem($id, $completed) {
+    function updateItemCheck($id, $completed) {
         $query = $this->db->prepare("UPDATE items SET completed=? WHERE id_item = ?");
         return $query->execute([$completed, $id]);
+    }
+
+    function updateItem($id, $info) {
+        $query = $this->db->prepare("UPDATE items SET info=? WHERE id_item = ?");
+        return $query->execute([$info, $id]);
     }
 
 }
