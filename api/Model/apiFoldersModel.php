@@ -14,7 +14,6 @@ class apiFoldersModel extends Model{
         return $folders;
     }
 
-    //ELIMINA CARPETA POR SU ID
     function deleteFolder($id_folder) {
         $query = $this->db->prepare('DELETE FROM folders WHERE id = ?');
         $query->execute([$id_folder]);
@@ -24,6 +23,13 @@ class apiFoldersModel extends Model{
     function insertFolder($name){
         $query = $this->db->prepare('INSERT INTO folders(name) VALUES (?)');
         return $query->execute([$name]);
+    }
+
+    function getFolderById($id){
+        $query = $this->db->prepare('SELECT * FROM folders WHERE folders.id = ?');
+        $query->execute([$id]);
+        $folder = $query->fetchAll(PDO::FETCH_OBJ);
+        return $folder;
     }
 
 }

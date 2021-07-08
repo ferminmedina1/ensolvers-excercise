@@ -10,6 +10,8 @@
    //LAS CARPETAS
     $r->addRoute("folders", "GET", "interfaceController", "Folders");
 
+    //LOS ITEMS DE UNA CARPETA
+    $r->addRoute("folder/:ID", "GET", "interfaceController", "Items");
 
    //Ruta por defecto.
     $r->setDefaultRoute("interfaceController", "Folders");

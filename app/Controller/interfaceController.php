@@ -12,10 +12,11 @@ class interfaceController extends Controller {
         $this->view = new interfaceView($this->auth->getIsLogged());
     }
 
-//MUESTRA EL HOME
     function Folders(){
-        $folders = $this->model->getFolders();
-        $this->view->showFoldersLocation($folders);
+        $this->view->showFoldersLocation();
     }
 
+    function Items(){
+        $this->view->showItemsByFolder();
+    }
 }

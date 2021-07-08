@@ -9,7 +9,7 @@
     </div>
 
     <nav class="navigator">
-            <a id="top" class="item" href="folders">Folders</a>
-            <a id="top" class="item" href="folders">All items</a>
+            <a id="top" class="item" href="folders">Phase 1</a>
+            <a id="top" class="item" href="folders">Phase 2</a>
     </nav>
 </header>

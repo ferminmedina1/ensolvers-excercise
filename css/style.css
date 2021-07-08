@@ -58,3 +58,7 @@ header{
     background: rgb(255, 187, 42);
     font-size: 25px;
 }
+
+.error{
+    color: black;
+}

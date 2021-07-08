@@ -33,7 +33,6 @@ class apiFoldersController extends apiController{
         $this->view->response("there are no folders with id = $id_folder", 404);
     }
 
-
     function addFolder(){
     $body = $this->getData();
     $folder = $this->model->insertFolder($body->name);
@@ -41,7 +40,15 @@ class apiFoldersController extends apiController{
         $this->view->response("Folder inserted successfully", 200);
     else
         $this->view->response("Could not add folder", 404);
+    }
 
+    function getFolder($params = null){
+        $id = $params[":ID"];
+        $folder = $this->model->getFolderById($id);
+        if (!empty($folder))
+            $this->view->response($folder, 200);
+        else
+            $this->view->response("there are no folders with id = $id", 404);
     }
     
 }

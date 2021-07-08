@@ -12,8 +12,11 @@ class interfaceView extends View{
         $this->smarty->display('templates/login.tpl'); 
     }
 
-    function showFoldersLocation($folders){
-        $this->smarty->assign('folders', $folders);
+    function showFoldersLocation(){
         $this->smarty->display('../templates/folders.tpl');
+    }
+
+    function showItemsByFolder(){
+        $this->smarty->display('../templates/itemsByFolder.tpl');
     }
 }

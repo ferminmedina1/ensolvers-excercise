@@ -14,20 +14,18 @@ function loadPage () {
             .catch(error => sinCarpetas());
     }
  
- //CUANDO NO HAY COMENTARIOS, ENTRA EN EL .CATCH Y MUESTRA EN EL DOM QUE NO HAY COMENTARIOS
     function sinCarpetas() {
         let lista = document.querySelector(".foldersList");
 
         lista.innerHTML = "Currently there are no folders"
     }
 
- //MUESTRA LOS COMENTARIOS EN EL DOM
     function renderFolders(folders) {
         let lista = document.querySelector(".foldersList");
 
         lista.innerHTML = ""            //SE VACIA EL DIV
         folders.forEach(folders => {
-             lista.innerHTML += "<li class='folder'>" + folders.name  + "<a href=items/"+ folders.id+">View items</a><i class='botonBorrar fa fa-trash' id='"+ folders.id+"'style='font-size:36px'></i></li>"
+             lista.innerHTML += "<li class='folder'>" + folders.name  + "<a href=folder/"+ folders.id+">View items</a><i class='botonBorrar fa fa-trash' id='"+ folders.id+"'style='font-size:36px'></i></li>"
              boton_borrar_fila(); //se le da funcionalidad
             });
     }
@@ -62,7 +60,7 @@ function loadPage () {
     document.querySelector("#btn_add").addEventListener("click", function(e) {
         e.preventDefault();
 
-        let name = document.querySelector("#name_folder").value
+        let name = document.querySelector("#name_folder").value;
     
         let folder = {
             "name": name,
@@ -77,7 +75,7 @@ function loadPage () {
                 body: JSON.stringify(folder)
             })
                 .then(response =>  response.json())
-                .then(get => getFolders())    //OBTIENE LOS COMENTARIOS
+                .then(get => getFolders())   
                 .catch(error => console.log(error));
         }else{
             document.querySelector(".error").innerHTML = "Insert a name for the folder."
