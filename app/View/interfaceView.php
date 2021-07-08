@@ -7,12 +7,13 @@ class interfaceView extends View{
         parent::__construct($is_logged);
     }
     
-    function showLogin($mensaje = ""){
-        $this->smarty->assign('mensaje', $mensaje);
+    function showLogin($message = ""){
+        $this->smarty->assign('message', $message);
         $this->smarty->display('templates/login.tpl'); 
     }
 
-    function showFoldersLocation(){
+    function showFoldersLocation($folders){
+        $this->smarty->assign('folders', $folders);
         $this->smarty->display('../templates/folders.tpl');
     }
 }

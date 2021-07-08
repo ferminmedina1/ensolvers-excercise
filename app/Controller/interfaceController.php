@@ -14,7 +14,8 @@ class interfaceController extends Controller {
 
 //MUESTRA EL HOME
     function Folders(){
-        $this->view->showFoldersLocation();
+        $folders = $this->model->getFolders();
+        $this->view->showFoldersLocation($folders);
     }
 
 }
