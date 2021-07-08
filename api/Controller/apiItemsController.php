@@ -30,5 +30,16 @@ class apiItemsController extends apiController{
         else
             $this->view->response("Could not add item", 404);
     }
+
+    function editItemCheck($params = null){
+        $id = $params[":ID"];
+        $body = $this->getData();
+        if(isset($body))
+        $result = $this->model->updateItem($id,$body->completed);
+        if ($result > 0)
+            $this->view->response("Item edit successfully", 200);
+        else
+            $this->view->response("There are no items with id = $id", 404);
+    }
     
 }

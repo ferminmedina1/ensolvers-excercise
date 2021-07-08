@@ -47,10 +47,11 @@ function loadPage () {
         lista.innerHTML = "";       
         items.forEach(items => {
             if(items.completed == 1){
-             lista.innerHTML += "<li class='folder'><input type='checkbox' id='completed' checked><label for='completed'>" + items.info  + "</label><a class='botonEditar' id='"+ items.id+"'>Edit</a></li>"
+             lista.innerHTML += "<li class='folder'><input type='checkbox'  class='check-button' id='"+ items.id_item +"' checked><label for='completed'>" + items.info  + "</label><a class='botonEditar' id='"+ items.id+"'>Edit</a></li>"
             }else{
-                lista.innerHTML += "<li class='folder'><input type='checkbox' id='completed'><label for='completed'>" + items.info  + "</label><a class='botonEditar' id='"+ items.id+"'>Edit</a></li>"
+                lista.innerHTML += "<li class='folder'><input type='checkbox' class='check-button' id='"+ items.id_item +"'><label for='completed'>" + items.info  + "</label><a class='botonEditar' id='"+ items.id+"'>Edit</a></li>"
             }
+            boton_check();
         });
     }
 
@@ -82,4 +83,32 @@ function loadPage () {
 
         document.querySelector("#info_item").value = null;  //SE RESETEAN LOS CAMPOS DEL FORMULARIO
     })
+
+    function boton_check () { 
+        let buttons = document.getElementsByClassName('check-button'); 
+
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].addEventListener('click', function() {
+                    let id = buttons[i].id; //busco a cual fue al que se le dio click
+                    let value = buttons[i].checked;
+                    editCompletedItem(id, value);
+                })
+            }
+    }
+
+    function editCompletedItem(id,value) {
+
+        let item = {
+            "completed": value,
+        }
+        
+        fetch('api/items/' + id , {
+            method: 'PUT',
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(item)
+        })
+        .then(response =>  response.json())
+        .then(get => getFolder()) 
+        .catch(error => console.log(error));
+    }
 }

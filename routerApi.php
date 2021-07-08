@@ -18,7 +18,7 @@ $r->addRoute("folders/:ID", "GET", "apiFoldersController", "getFolder");
 //INSERTAR CARPETA
 $r->addRoute("addFolder", "POST", "apiFoldersController", "addFolder");
 
-//ELIMINAR COMENTARIO
+//ELIMINAR CARPETA
 $r->addRoute("folders/:ID", "DELETE", "apiFoldersController", "deleteFolder");
 
 //TRAER ITEMS DE UNA CARPETA
@@ -26,5 +26,8 @@ $r->addRoute("items/folder/:ID", "GET", "apiItemsController", "getItemsByFolder"
 
 //INSERTAR ITEM
 $r->addRoute("addItem", "POST", "apiItemsController", "addItem");
+
+//EDITAR ITEM
+$r->addRoute("items/:ID", "PUT", "apiItemsController", "editItemCheck");
 
 $r->route($_GET['resource'], $_SERVER['REQUEST_METHOD']); 
