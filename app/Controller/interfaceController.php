@@ -9,7 +9,8 @@ class interfaceController extends Controller {
     public function __construct() {
         parent::__construct();
         $this->model = new foldersModel();
-        $this->view = new interfaceView($this->auth->getIsLogged());
+        $this->view = new interfaceView();
+        $this->helper->checkUserSession();
     }
 
     function Folders(){

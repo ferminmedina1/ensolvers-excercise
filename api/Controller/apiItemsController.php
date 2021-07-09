@@ -10,7 +10,6 @@ class apiItemsController extends apiController{
         parent::__construct();
         $this->model = new apiItemsModel();
         $this->view = new apiView();
-
     }
 
     function getItemsByFolder($params = null){

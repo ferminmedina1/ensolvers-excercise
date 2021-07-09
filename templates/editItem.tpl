@@ -37,9 +37,9 @@
             <button href="api/items/folder/'">Cancel</button>
             <p class="error"></p>
         </section>
-        <div>
+        </div>
+    <a id="logout" class="item" href="logout">Log out!</a>
     </article>
-
 
 </body>
 </html>

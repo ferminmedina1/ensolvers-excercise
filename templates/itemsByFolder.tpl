@@ -36,7 +36,8 @@
             <button type="submit" id="btn_add">Add</button>
             <p class="error"></p>
         </section>
-        <div>
+        </div>
+    <a id="logout" class="item" href="logout">Log out!</a>
     </article>
 
 </body>

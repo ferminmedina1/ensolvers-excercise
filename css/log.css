@@ -1,0 +1,16 @@
+form{
+    display: flex;
+    flex-direction: column;
+}
+
+label{
+    margin-top: 10px;
+}
+
+#botonEnviar{
+    margin-top: 20px;
+}
+
+#avisoCaptcha{
+    color: black;
+}

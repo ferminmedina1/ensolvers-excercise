@@ -3,13 +3,8 @@ require_once 'View.php';
 
 class interfaceView extends View{
 
-    public function __construct($is_logged){
-        parent::__construct($is_logged);
-    }
-    
-    function showLogin($message = ""){
-        $this->smarty->assign('message', $message);
-        $this->smarty->display('templates/login.tpl'); 
+    public function __construct(){
+        parent::__construct();
     }
 
     function showFoldersLocation(){
@@ -22,5 +17,10 @@ class interfaceView extends View{
 
     function showItemEdit(){
         $this->smarty->display('../templates/editItem.tpl');
+    }
+
+    function showLog($message = ""){
+        $this->smarty->assign('message', $message);
+        $this->smarty->display('../templates/log.tpl');
     }
 }

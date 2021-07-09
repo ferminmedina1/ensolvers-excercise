@@ -1,6 +1,6 @@
 <header>
     <div id="image-title">
-        <a href="home"><img src="./images/logo_ensolvers.jpg" alt="Ensolvers" class="logoHeader"></a>
+        <a href="folders"><img src="./images/logo_ensolvers.jpg" alt="Ensolvers" class="logoHeader"></a>
     </div>
     
     <div id="nav-icon">

@@ -7,8 +7,8 @@
     <title>Ensolvers - Excercise</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/folders.css">
+    <link rel="stylesheet" href="./css/log.css">
     <!--<script type="text/javascript" src="./js/nav.js"></script>-->
-    <script src="././js/foldersApi.js"></script>
     <base href="{$base_url}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -24,19 +24,19 @@
     
     <article class="content">
         <div class="container">
-        <h1>Folders</h1>
-        <section class="folders">
-            <ul class='foldersList'>
-        
-            </ul>
+        <section class="formularioSection">
+            <form class="formulario" action="verifyUser" method="post">
+                <h1 class="subtitulo">Log!</h1>
+                
+                <label class="itemformulario"> Usuario: </label> <input type="text" name="input_user" required>
+                <label class="itemformulario"> Contraseña: </label> <input type="password" id="contra" name="input_pass" required>
+
+                <p id="avisoCaptcha">{$message}</p>
+                <button type="submit" id="botonEnviar" >Log in</button>
+
+            </form>
         </section>
-        <section class="addFolder">
-            <input type="text" id="name_folder" placeholder="New folder">
-            <button type="submit" id="btn_add">Add</button>
-            <p class="error"></p>
-        </section>
-        </div>
-    <a id="logout" class="item" href="logout">Log out!</a>
+        <div>
     </article>
 
 </body>

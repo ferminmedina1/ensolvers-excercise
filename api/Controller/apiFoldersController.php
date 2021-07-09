@@ -10,11 +10,9 @@ class apiFoldersController extends apiController{
         parent::__construct();
         $this->model = new apiFoldersModel();
         $this->view = new apiView();
-
     }
 
     function allFolders(){
-        
         $folders = $this->model->getFolders();
         if (!empty($folders))
             $this->view->response($folders, 200);
@@ -23,7 +21,6 @@ class apiFoldersController extends apiController{
     }
 
     function deleteFolder($params = null) {
-
     $id_folder = $params[":ID"];
     $resultado = $this->model->deleteFolder($id_folder);
 

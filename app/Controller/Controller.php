@@ -1,12 +1,12 @@
 <?php
-require_once './app/Helper/AuthHelper.php';
+require_once './app/Helper/userHelper.php';
 
 abstract class Controller {
     protected $view;
     protected $model;
-    protected $auth;
+    protected $helper;
 
     function __construct () {
-        $this->auth = new AuthHelper();
+        $this->helper = new userHelper();
     }
 }
