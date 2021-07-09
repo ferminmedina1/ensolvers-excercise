@@ -26,6 +26,7 @@ function loadPage () {
         let lista = document.querySelector(".folderName"); 
         lista.innerHTML = "<a href='folders' class='linkFolders'>Folders > " + folder[0].name + "</a>";
         getItemsByFolder(folder[0].id);
+        btn_submitAdd();
     }
 
     function getItemsByFolder(id){
@@ -47,14 +48,15 @@ function loadPage () {
         lista.innerHTML = "";       
         items.forEach(items => {
             if(items.completed == 1){
-                lista.innerHTML += "<li class='folder'><input type='checkbox'  class='check-button' id='"+ items.id_item +"' checked><label for='completed' class='nameItem'>" + items.info  + "</label><a class='botonEditar' id='"+ items.id_item+"'>Edit</a></li>"
+                lista.innerHTML += "<li class='folder'><div><input type='checkbox' class='check-button' id='"+ items.id_item +"' checked><label for='completed' class='nameItem'>" + items.info  + "</label></div><a class='botonEditar' id='"+ items.id_item+"'>Edit</a></li>"
             }else{
-                lista.innerHTML += "<li class='folder'><input type='checkbox' class='check-button' id='"+ items.id_item +"'><label for='completed' class='nameItem'>" + items.info  + "</label><a class='botonEditar' id='"+ items.id_item+"'>Edit</a></li>"
+                lista.innerHTML += "<li class='folder'><div><input type='checkbox' class='check-button' id='"+ items.id_item +"'><label for='completed' class='nameItem'>" + items.info  + "</label></div><a class='botonEditar' id='"+ items.id_item+"'>Edit</a></li>"
             }
             btn_check();
             btn_edit();
             let submit = document.querySelector('.addItem');
             submit.innerHTML='<input type="text" id="info_item" placeholder="New item"><button type="submit" id="btn_add">Add</button><p class="error"></p>';
+            btn_submitAdd();
         });
     }
     
@@ -76,17 +78,24 @@ function loadPage () {
         for(let i = 0; i<buttons.length; i++) {          //con este for hago que todos los botones con la clase botoneditarTD funcionen
     
             buttons[i].addEventListener('click', () => { 
-                let name = buttons[i].parentElement.childNodes[1].outerText;
-                let id = document.querySelector('.botonEditar').id;
+                let name = buttons[i].parentElement.childNodes[0].outerText;
+                let id = buttons[i].parentElement.childNodes[1].id;
 
                 document.querySelector('.folderName').innerHTML = 'Editing: "'+ name +'"';
                 let list = document.querySelector('.itemsList');
                 list.innerHTML='';
                 let submit = document.querySelector('.addItem');
-                submit.innerHTML= '<input type="text" id="info_item" placeholder="Edit item"><button type="submit" id="btn_edit">Save</button><button>Cancel</button><p class="error"></p>'
+                submit.innerHTML= '<input type="text" id="info_item" placeholder="Edit item"><button type="submit" id="btn_edit">Save</button><button id="btn_cancel">Cancel</button><p class="error"></p>'
                 btn_submit_edit(id);
+                btn_cancel();
             })
         }
+    }
+
+    function btn_cancel(){
+        document.querySelector("#btn_cancel").addEventListener("click", function(e) {
+            getFolder();
+        });
     }
 
     function btn_submit_edit(id){
@@ -108,35 +117,36 @@ function loadPage () {
         })
     }
     
+    function btn_submitAdd(){
+        document.querySelector("#btn_add").addEventListener("click", function(e) {
+            e.preventDefault();
 
-    document.querySelector("#btn_add").addEventListener("click", function(e) {
-        e.preventDefault();
+            let info = document.querySelector("#info_item").value;
+            let idFolder = getIdFolder();
 
-        let info = document.querySelector("#info_item").value;
-        let idFolder = getIdFolder();
+            let item = {
+                "info": info,
+                "id_folder": idFolder,
+            }
 
-        let item = {
-            "info": info,
-            "id_folder": idFolder,
-        }
+            if(item.info != ""){  //SI ESTAN VACIOS LOS CAMPOS NO SE ENVIA
+                let lista = document.querySelector(".error");
+                lista.innerHTML = "";
+                fetch('api/addItem', {
+                    method: 'POST',
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(item)
+                })
+                    .then(response =>  response.json())
+                    .then(get => getFolder())   
+                    .catch(error => console.log(error));
+            }else{
+                document.querySelector(".error").innerHTML = "Insert information for the item."
+            }
 
-        if(item.info != ""){  //SI ESTAN VACIOS LOS CAMPOS NO SE ENVIA
-            let lista = document.querySelector(".error");
-            lista.innerHTML = "";
-            fetch('api/addItem', {
-                method: 'POST',
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(item)
-            })
-                .then(response =>  response.json())
-                .then(get => getFolder())   
-                .catch(error => console.log(error));
-        }else{
-            document.querySelector(".error").innerHTML = "Insert information for the item."
-        }
-
-        document.querySelector("#info_item").value = null;  //SE RESETEAN LOS CAMPOS DEL FORMULARIO
-    })
+            document.querySelector("#info_item").value = null;  //SE RESETEAN LOS CAMPOS DEL FORMULARIO
+        })
+    }
 
     function editCompletedItem(id,value) {
 
