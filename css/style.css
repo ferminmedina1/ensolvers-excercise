@@ -106,3 +106,38 @@ h1{
 #logout{
     width: auto;
 }
+
+@media only screen and (max-width: 750px){
+    .navigator{
+        display: flex;
+        justify-content: flex-end;
+        width: 80%;
+    }
+
+    .logoHeader{
+        width: 100%;
+    }
+
+    .item{
+        margin: 2%;
+        padding: 2%;
+        width: auto;
+    }
+
+    .container{
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 390px){
+
+    #image-title{
+        display: none;
+    }
+    
+    nav.navigator{
+        width: 100%;
+        margin-right: 0;
+        justify-content: center;
+    }
+}
