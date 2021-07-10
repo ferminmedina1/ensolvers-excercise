@@ -19,6 +19,11 @@ class interfaceView extends View{
         $this->smarty->display('../templates/editItem.tpl');
     }
 
+    function showToDoList(){
+        $this->smarty->display('../templates/ToDoList.tpl');
+    }
+
+
     function showLog($message = ""){
         $this->smarty->assign('message', $message);
         $this->smarty->display('../templates/log.tpl');

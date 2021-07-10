@@ -5,11 +5,10 @@ function loadPage () {
     
     getFolder();
     
- //SE OBTIENEN LAS CARPETAS
     function getFolder(){
 
         let id= getIdFolder();
-
+        
         fetch('api/folders/'+ id)
             .then(response =>  response.json())
             .then(folder => renderFolder(folder)) 
@@ -23,8 +22,12 @@ function loadPage () {
     }
 
     function renderFolder(folder) {
-        let lista = document.querySelector(".folderName"); 
-        lista.innerHTML = "<a href='folders' class='linkFolders'>Folders > " + folder[0].name + "</a>";
+        let lista = document.querySelector(".folderName");
+        if(folder[0].id != 0){
+            lista.innerHTML = "<a href='folders' class='linkFolders'>Folders > " + folder[0].name + "</a>";
+        }else{
+            lista.innerHTML = "<a>" + folder[0].name + "</a>";
+        }
         getItemsByFolder(folder[0].id);
         btn_submitAdd();
     }
@@ -32,7 +35,7 @@ function loadPage () {
     function getItemsByFolder(id){
         fetch('api/items/folder/'+ id)
             .then(response =>  response.json())
-            .then(items => renderItems(items)) //SE LLAMA A LA FUNCION QUE LOS MUESTRA
+            .then(items => renderItems(items))
             .catch(error => sinItems());
     }
     
@@ -44,8 +47,9 @@ function loadPage () {
     }
     
     function renderItems(items) {
+       
         let lista = document.querySelector(".itemsList");
-        lista.innerHTML = "";       
+        lista.innerHTML = "";     
         items.forEach(items => {
             if(items.completed == 1){
                 lista.innerHTML += "<li class='folder'><div><input type='checkbox' class='check-button' id='"+ items.id_item +"' checked><label for='completed' class='nameItem'>" + items.info  + "</label></div><a class='botonEditar' id='"+ items.id_item+"'>Edit</a></li>"
@@ -65,7 +69,7 @@ function loadPage () {
 
             for (let i = 0; i < buttons.length; i++) {
                 buttons[i].addEventListener('click', function() {
-                    let id = buttons[i].id; //busco a cual fue al que se le dio click
+                    let id = buttons[i].id;
                     let value = buttons[i].checked;
                     editCompletedItem(id, value);
                 })
@@ -75,8 +79,7 @@ function loadPage () {
     function btn_edit(){
         let buttons = document.getElementsByClassName('botonEditar'); 
         
-        for(let i = 0; i<buttons.length; i++) {          //con este for hago que todos los botones con la clase botoneditarTD funcionen
-    
+        for(let i = 0; i<buttons.length; i++) {     
             buttons[i].addEventListener('click', () => { 
                 let name = buttons[i].parentElement.childNodes[0].outerText;
                 let id = buttons[i].parentElement.childNodes[1].id;
@@ -129,7 +132,7 @@ function loadPage () {
                 "id_folder": idFolder,
             }
 
-            if(item.info != ""){  //SI ESTAN VACIOS LOS CAMPOS NO SE ENVIA
+            if(item.info != ""){ 
                 let lista = document.querySelector(".error");
                 lista.innerHTML = "";
                 fetch('api/addItem', {

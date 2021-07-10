@@ -8,7 +8,7 @@ class apiFoldersModel extends Model{
     }
 
     function getFolders() {
-        $query = $this->db->prepare('SELECT * FROM folders');
+        $query = $this->db->prepare('SELECT * FROM folders WHERE NOT id = 0');
         $query->execute();
         $folders = $query->fetchAll(PDO::FETCH_OBJ);
         return $folders;

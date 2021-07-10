@@ -5,12 +5,12 @@ function loadPage () {
     
     getFolders();
     
- //SE OBTIENEN LAS CARPETAS
+
     function getFolders(){
 
         fetch('api/folders')
             .then(response =>  response.json())
-            .then( folders => renderFolders(folders)) //SE LLAMA A LA FUNCION QUE LOS MUESTRA
+            .then( folders => renderFolders(folders)) 
             .catch(error => sinCarpetas());
     }
  
@@ -23,10 +23,10 @@ function loadPage () {
     function renderFolders(folders) {
         let lista = document.querySelector(".foldersList");
 
-        lista.innerHTML = ""            //SE VACIA EL DIV
+        lista.innerHTML = "";          
         folders.forEach(folders => {
              lista.innerHTML += "<li class='folder'><p class='text'>" + folders.name  + "</p><a href=folder/"+ folders.id+">View items</a><i class='botonBorrar fa fa-trash' id='"+ folders.id+"'style='font-size:36px'></i></li>"
-             boton_borrar_fila(); //se le da funcionalidad
+             boton_borrar_fila(); 
             });
     }
 
@@ -35,7 +35,7 @@ function loadPage () {
 
             for (let i = 0; i < buttons.length; i++) {
                 buttons[i].addEventListener('click', function() {
-                    let id = buttons[i].id; //busco a cual fue al que se le dio click
+                    let id = buttons[i].id; 
                     borrarCarpeta_en_servidor(id);
                 })
                 
@@ -66,7 +66,7 @@ function loadPage () {
             "name": name,
         }
 
-        if(folder.name != ""){  //SI ESTAN VACIOS LOS CAMPOS NO SE ENVIA
+        if(folder.name != ""){ 
             let lista = document.querySelector(".error");
             lista.innerHTML = "";
             fetch('api/addFolder', {
@@ -81,6 +81,6 @@ function loadPage () {
             document.querySelector(".error").innerHTML = "Insert a name for the folder."
         }
 
-        document.querySelector("#name_folder").value = null;  //SE RESETEAN LOS CAMPOS DEL FORMULARIO
+        document.querySelector("#name_folder").value = null; 
     })
 }

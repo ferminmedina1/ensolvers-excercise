@@ -27,7 +27,7 @@ $r->addRoute("items/folder/:ID", "GET", "apiItemsController", "getItemsByFolder"
 //INSERTAR ITEM
 $r->addRoute("addItem", "POST", "apiItemsController", "addItem");
 
-//EDITAR ITEM
+//EDITAR CHECK DE UN ITEM
 $r->addRoute("items/check/:ID", "PUT", "apiItemsController", "editItemCheck");
 
 //EDITAR ITEM

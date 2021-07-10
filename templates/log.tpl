@@ -29,7 +29,7 @@
                 <h1 class="subtitulo">Log!</h1>
                 
                 <label class="itemformulario"> Usuario: </label> <input type="text" name="input_user" required>
-                <label class="itemformulario"> Contraseña: </label> <input type="password" id="contra" name="input_pass" required>
+                <label class="itemformulario"> Contraseña: </label> <input type="password" id="contra" name="input_pass" autocomplete="off" required>
 
                 <p id="avisoCaptcha">{$message}</p>
                 <button type="submit" id="botonEnviar" >Log in</button>

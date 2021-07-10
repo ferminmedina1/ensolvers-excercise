@@ -17,6 +17,10 @@ class interfaceController extends Controller {
         $this->view->showFoldersLocation();
     }
 
+    function toDoList(){
+        $this->view->showToDoList();
+    }
+
     function Items(){
         $this->view->showItemsByFolder();
     }

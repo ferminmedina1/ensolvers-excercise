@@ -25,8 +25,8 @@
     
     <article class="content">
         <div class="container">
-        <h1 class='folderName'></h1>
-        <section class="items">
+        <h1 class ="folderName">To-Do List</h1>
+        <section class="toDoSection">
             <ul class='itemsList'>
         
             </ul>

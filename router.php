@@ -3,12 +3,14 @@
     require_once('app/Controller/interfaceController.php');
     require_once('routerClass.php');
     
-   // CONSTANTES PARA RUTEO
     define("BASE_URL", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/');    
     define("LOGIN", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/login');
     define("LOGOUT", 'http://'.$_SERVER["SERVER_NAME"].':'.$_SERVER["SERVER_PORT"].dirname($_SERVER["PHP_SELF"]).'/logout');
 
     $r = new Router();
+
+    //TO DO LIST
+    $r->addRoute("to-do-list/:ID", "GET", "interfaceController", "toDoList");
 
    //LAS CARPETAS
     $r->addRoute("folders", "GET", "interfaceController", "Folders");
@@ -24,6 +26,6 @@
    //Ruta por defecto.
     $r->setDefaultRoute("userController", "Log");
 
- //run
+    //run
     $r->route($_GET['action'], $_SERVER['REQUEST_METHOD']); 
 ?>
